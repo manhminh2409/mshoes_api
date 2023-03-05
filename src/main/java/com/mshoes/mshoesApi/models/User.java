@@ -1,22 +1,26 @@
 package com.mshoes.mshoesApi.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Data
 @Entity
-@Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "userName" }) })
+@Table(name = "USER")
 public class User {
 
 	@Id
@@ -52,5 +56,10 @@ public class User {
 
 	@Column
 	private int userStatus;
+
+	@OneToMany(mappedBy = "user")
+	@EqualsAndHashCode.Exclude
+    @ToString.Exclude 
+	private List<Product> products;
 
 }

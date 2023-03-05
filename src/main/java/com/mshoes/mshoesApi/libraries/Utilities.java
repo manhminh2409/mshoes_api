@@ -21,4 +21,26 @@ public class Utilities {
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
+
+//	/**
+//	 * Method encode password to hexMD5<br>
+//	 * <u><i>Update: 02/03/2023</i></u>
+//	 * 
+//	 * @param str
+//	 * @return
+//	 */
+//	public String encodeToMD5(String str) {
+//		return DigestUtils.md5Hex(str).toUpperCase();
+//	}
+	
+//	/**
+//	 * Method decode password to hexMD5<br>
+//	 * <u><i>Update: 02/03/2023</i></u>
+//	 * 
+//	 * @param str
+//	 * @return
+//	 */
+//	public String decodeToMD5(String strMD5) {
+//		return strMD5;
+//	}
 }

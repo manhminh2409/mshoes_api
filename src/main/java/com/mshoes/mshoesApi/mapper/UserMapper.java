@@ -1,4 +1,4 @@
-package com.mshoes.mshoesApi.converter;
+package com.mshoes.mshoesApi.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import com.mshoes.mshoesApi.models.User;
 import com.mshoes.mshoesApi.models.DTO.UserDTO;
 
 @Service
-public class UserConverter {
+public class UserMapper {
 
 	@Autowired
 	private ModelMapper modelMapper;
