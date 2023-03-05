@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.mshoes.mshoesApi.exception.ResourceNotFoundException;
 import com.mshoes.mshoesApi.libraries.Utilities;
 import com.mshoes.mshoesApi.mapper.ProductMapper;
+import com.mshoes.mshoesApi.models.Category;
 import com.mshoes.mshoesApi.models.Product;
 import com.mshoes.mshoesApi.models.DTO.ProductDTO;
+import com.mshoes.mshoesApi.repositories.CategoryRepository;
 import com.mshoes.mshoesApi.repositories.ProductRepository;
 import com.mshoes.mshoesApi.services.ProductService;
 
@@ -18,16 +20,21 @@ import com.mshoes.mshoesApi.services.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ProductRepository productRepository;
+	private final ProductRepository productRepository;
 
 	@Autowired
-	private ProductMapper productMapper;
+	private final CategoryRepository categoryRepository;
 
 	@Autowired
-	private Utilities utilities;
+	private final ProductMapper productMapper;
 
-	public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, Utilities utilities) {
+	@Autowired
+	private final Utilities utilities;
+
+	public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, Utilities utilities,
+			CategoryRepository categoryRepository) {
 		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
 		this.productMapper = productMapper;
 		this.utilities = utilities;
 	}
@@ -92,6 +99,14 @@ public class ProductServiceImpl implements ProductService {
 			System.out.print("Ex: " + e);
 		}
 
+	}
+
+	@Override
+	public List<ProductDTO> getAllProductsByCategoryId(Long categoryId) {
+		// TODO Auto-generated method stub
+		Category category = categoryRepository.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category", "Id", categoryId));
+		List<Product> products = productRepository.findAllProductByProductCategory(category);
+		return products.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
 	}
 
 }

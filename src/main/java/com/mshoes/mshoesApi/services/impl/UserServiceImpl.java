@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUserLastModified(utilities.getCurrentDate());
 
 		// Convert password to md5Hex
-		//userDTO.setUserPassword(utilities.encodeToMD5(userDTO.getUserPassword()));
+		// userDTO.setUserPassword(utilities.encodeToMD5(userDTO.getUserPassword()));
 
 		// Set default userRole, userStatus
 		userDTO.setUserRole(1);
@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new ResourceNotFoundException("User", "ID", userId));
 
 		userDTO.setUserId(userId);
+		userDTO.setUserLastModified(utilities.getCurrentDate());
 
 		// Set old User with new information from input userDTO
 		user = userMapper.toEntity(userDTO);

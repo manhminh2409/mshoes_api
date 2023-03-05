@@ -57,6 +57,10 @@ public class Product {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_author_id")
-	private User user;
+	private User productUser;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_category_id")
+	private Category productCategory;
 
 }

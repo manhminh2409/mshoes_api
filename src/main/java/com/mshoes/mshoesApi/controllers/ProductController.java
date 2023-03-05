@@ -39,6 +39,12 @@ public class ProductController {
 		return productService.getAllProducts();
 	}
 
+	// get All products
+	@GetMapping("/categoryid/{id}")
+	public List<ProductDTO> getAllProductsById(@PathVariable(name = "id") Long categoryId) {
+		return productService.getAllProductsByCategoryId(categoryId);
+	}
+
 	// get Product by ID
 	@GetMapping("/{id}")
 	public ResponseEntity<ProductDTO> getProductById(@PathVariable(name = "id") Long productId) {

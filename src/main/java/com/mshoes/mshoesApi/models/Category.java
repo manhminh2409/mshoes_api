@@ -15,51 +15,35 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Data
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "CATEGORY")
+public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long userId;
-
-	@Column(nullable = false)
-	private String userName;
-
-	@Column(nullable = false)
-	private String userPassword;
+	private Long categoryId;
 
 	@Column
-	private String userFullname;
+	private String categoryTitle;
 
 	@Column
-	private String userEmail;
+	private String categoryDescription;
 
 	@Column
-	private String userAddress;
+	private String categoryCreatedDate;
 
 	@Column
-	private String userPhone;
-
-	@Column(nullable = false)
-	private String userCreatedDate;
+	private String categoryLastModified;
 
 	@Column
-	private String userLastModified;
+	private int categoryStatus;
 
-	@Column
-	private int userRole;
-
-	@Column
-	private int userStatus;
-
-	@OneToMany(mappedBy = "productUser")
+	@OneToMany(mappedBy = "productCategory")
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private List<Product> userProducts;
-
+	private List<Product> categoryProducts;
 }
