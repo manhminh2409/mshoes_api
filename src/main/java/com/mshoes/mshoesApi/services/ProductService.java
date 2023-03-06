@@ -13,14 +13,15 @@ public interface ProductService {
 	 * @return
 	 */
 	List<ProductDTO> getAllProducts();
-	
+
 	/**
-	 * Method get all product is enable(product_status=1) by category in database <br>
+	 * Method get all product is enable(product_status=1) by category in database
+	 * <br>
 	 * <u><i>Update: 06/03/2023</i></u>
 	 * 
 	 * @return
 	 */
-	List<ProductDTO> getAllProductsByCategoryId(Long categoryId);
+	List<ProductDTO> getProductsByCategoryId(Long categoryId);
 
 	/**
 	 * Method get a product by product_id in database <br>

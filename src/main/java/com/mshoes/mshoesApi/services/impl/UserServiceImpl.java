@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "ID", userId));
 
-		userDTO.setUserId(userId);
+		userDTO.setId(userId);
 		userDTO.setUserLastModified(utilities.getCurrentDate());
 
 		// Set old User with new information from input userDTO

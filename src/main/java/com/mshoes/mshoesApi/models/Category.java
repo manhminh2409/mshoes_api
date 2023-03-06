@@ -1,7 +1,9 @@
 package com.mshoes.mshoesApi.models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,9 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +25,8 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long categoryId;
+	@Column(name = "category_id")
+	private long id;
 
 	@Column
 	private String categoryTitle;
@@ -42,8 +43,6 @@ public class Category {
 	@Column
 	private int categoryStatus;
 
-	@OneToMany(mappedBy = "productCategory")
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private List<Product> categoryProducts;
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Product> products = new HashSet<>();
 }

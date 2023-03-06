@@ -23,7 +23,8 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productId;
+	@Column(name = "product_id")
+	private long id;
 
 	@Column(nullable = false)
 	private String productName;
@@ -56,11 +57,7 @@ public class Product {
 	private int productStatus;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_author_id")
-	private User productUser;
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "product_category_id")
-	private Category productCategory;
+	private Category category;
 
 }

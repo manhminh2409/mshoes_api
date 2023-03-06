@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import com.mshoes.mshoesApi.exception.ResourceNotFoundException;
 import com.mshoes.mshoesApi.libraries.Utilities;
 import com.mshoes.mshoesApi.mapper.ProductMapper;
-import com.mshoes.mshoesApi.models.Category;
 import com.mshoes.mshoesApi.models.Product;
 import com.mshoes.mshoesApi.models.DTO.ProductDTO;
-import com.mshoes.mshoesApi.repositories.CategoryRepository;
 import com.mshoes.mshoesApi.repositories.ProductRepository;
 import com.mshoes.mshoesApi.services.ProductService;
 
@@ -23,18 +21,13 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductRepository productRepository;
 
 	@Autowired
-	private final CategoryRepository categoryRepository;
-
-	@Autowired
 	private final ProductMapper productMapper;
 
 	@Autowired
 	private final Utilities utilities;
 
-	public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, Utilities utilities,
-			CategoryRepository categoryRepository) {
+	public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper, Utilities utilities) {
 		this.productRepository = productRepository;
-		this.categoryRepository = categoryRepository;
 		this.productMapper = productMapper;
 		this.utilities = utilities;
 	}
@@ -71,12 +64,20 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public List<ProductDTO> getProductsByCategoryId(Long categoryId) {
+		// TODO Auto-generated method stub
+		List<Product> products = productRepository.findByCategoryId(categoryId);
+
+		return products.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
+	}
+
+	@Override
 	public ProductDTO updateProduct(ProductDTO productDTO, long productId) {
 		// get product by id from the database
 		Product product = productRepository.findById(productId)
 				.orElseThrow(() -> new ResourceNotFoundException("Product", "id", productId));
 
-		productDTO.setProductId(productId);
+		productDTO.setId(productId);
 		productDTO.setProductLastModified(utilities.getCurrentDate());
 		// Set new information
 		product = productMapper.toEntity(productDTO);
@@ -99,14 +100,6 @@ public class ProductServiceImpl implements ProductService {
 			System.out.print("Ex: " + e);
 		}
 
-	}
-
-	@Override
-	public List<ProductDTO> getAllProductsByCategoryId(Long categoryId) {
-		// TODO Auto-generated method stub
-		Category category = categoryRepository.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category", "Id", categoryId));
-		List<Product> products = productRepository.findAllProductByProductCategory(category);
-		return products.stream().map(product -> productMapper.toDTO(product)).collect(Collectors.toList());
 	}
 
 }
