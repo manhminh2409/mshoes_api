@@ -1,21 +1,22 @@
 package com.mshoes.mshoesApi.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Data
 @Entity
-@Table(name = "USER")
+@Table(name = "USER", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"userName"}),
+		@UniqueConstraint(columnNames = {"userEmail"})
+})
 public class User {
 
 	@Id
@@ -48,9 +49,12 @@ public class User {
 	private String userLastModified;
 
 	@Column
-	private int userRole;
-
-	@Column
 	private int userStatus;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_roles",
+			joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_role_id",referencedColumnName = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
 }

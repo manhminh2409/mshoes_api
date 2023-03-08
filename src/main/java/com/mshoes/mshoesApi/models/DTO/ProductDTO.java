@@ -1,7 +1,6 @@
 package com.mshoes.mshoesApi.models.DTO;
 
 import com.mshoes.mshoesApi.models.Category;
-import com.mshoes.mshoesApi.models.User;
 
 import lombok.Data;
 
@@ -29,8 +28,6 @@ public class ProductDTO {
 	private String productLastModified;
 
 	private int productStatus;
-
-	private User productUser;
 
 	private Category productCategory;
 }

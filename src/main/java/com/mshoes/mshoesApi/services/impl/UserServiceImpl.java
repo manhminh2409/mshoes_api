@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mshoes.mshoesApi.exception.ResourceNotFoundException;
@@ -48,6 +49,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.toDTO(user);
 	}
 
+	BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Override
 	public UserDTO createUser(UserDTO userDTO) {
 		// TODO Auto-generated method stub
@@ -56,11 +61,11 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUserCreatedDate(utilities.getCurrentDate());
 		userDTO.setUserLastModified(utilities.getCurrentDate());
 
-		// Convert password to md5Hex
-		// userDTO.setUserPassword(utilities.encodeToMD5(userDTO.getUserPassword()));
+		// Encode password
 
-		// Set default userRole, userStatus
-		userDTO.setUserRole(1);
+		userDTO.setUserPassword(passwordEncoder().encode(userDTO.getUserPassword()));
+
+		// Set default userStatus
 		userDTO.setUserStatus(1);
 
 		// Convert userDTO to User

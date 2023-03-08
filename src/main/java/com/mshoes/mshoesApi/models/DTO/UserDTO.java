@@ -23,7 +23,6 @@ public class UserDTO {
 
 	private String userLastModified;
 
-	private int userRole;
-
 	private int userStatus;
+
 }
