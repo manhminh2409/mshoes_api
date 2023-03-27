@@ -24,7 +24,7 @@ public class UserMapper {
 	/**
 	 * Method convert User to UserDTO using ModelMapper <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param user
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class UserMapper {
 	/**
 	 * Method convert UserDTO to User using ModelMapper <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param userDTO
 	 * @return
 	 */

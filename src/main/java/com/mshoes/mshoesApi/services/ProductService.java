@@ -9,7 +9,7 @@ public interface ProductService {
 	/**
 	 * Method get all product is enable(product_status=1) in database <br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @return
 	 */
 	List<ProductDTO> getAllProducts();
@@ -18,7 +18,7 @@ public interface ProductService {
 	 * Method get all product is enable(product_status=1) by category in database
 	 * <br>
 	 * <u><i>Update: 06/03/2023</i></u>
-	 * 
+	 *
 	 * @return
 	 */
 	List<ProductDTO> getProductsByCategoryId(Long categoryId);
@@ -26,7 +26,7 @@ public interface ProductService {
 	/**
 	 * Method get a product by product_id in database <br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param productID
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public interface ProductService {
 	/**
 	 * Method create new product<br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param productDTO
 	 * @return
 	 */
@@ -44,7 +44,7 @@ public interface ProductService {
 	/**
 	 * Method update detail a product with new infomation and product_id<br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param productDTO
 	 * @param productId
 	 * @return
@@ -55,7 +55,7 @@ public interface ProductService {
 	 * Method delete (change product_status to value 0) change enable product to
 	 * disable product<br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param productId
 	 * @return
 	 */

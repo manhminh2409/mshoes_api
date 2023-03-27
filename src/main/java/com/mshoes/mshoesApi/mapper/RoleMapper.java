@@ -1,10 +1,11 @@
 package com.mshoes.mshoesApi.mapper;
 
-import com.mshoes.mshoesApi.models.DTO.RoleDTO;
-import com.mshoes.mshoesApi.models.Role;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mshoes.mshoesApi.models.Role;
+import com.mshoes.mshoesApi.models.DTO.RoleDTO;
 
 @Service
 public class RoleMapper {

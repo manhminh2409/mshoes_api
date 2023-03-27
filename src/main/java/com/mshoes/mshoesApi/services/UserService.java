@@ -9,7 +9,7 @@ public interface UserService {
 	/**
 	 * Method get all user is active in database <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @return
 	 */
 	List<UserDTO> getAllUsers();
@@ -17,7 +17,7 @@ public interface UserService {
 	/**
 	 * Method get user by userId. <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param userId
 	 * @return
 	 */
@@ -26,7 +26,7 @@ public interface UserService {
 	/**
 	 * Method create new User <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param userDTO
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public interface UserService {
 	/**
 	 * Method update user with new information User and userId. <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param userDTO
 	 * @param userId
 	 * @return
@@ -45,7 +45,7 @@ public interface UserService {
 	/**
 	 * Method delete user with userId. <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @param userId
 	 */
 	void deleteUser(long userId);

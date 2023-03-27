@@ -24,7 +24,7 @@ public class CategoryMapper {
 	/**
 	 * Method convert Category to CategoryDTO using ModelMapper <br>
 	 * <u><i>Update: 06/03/2023</i></u>
-	 * 
+	 *
 	 * @param Category
 	 * @return
 	 */
@@ -35,7 +35,7 @@ public class CategoryMapper {
 	/**
 	 * Method convert CategoryDTO to Category using ModelMapper <br>
 	 * <u><i>Update: 06/03/2023</i></u>
-	 * 
+	 *
 	 * @param CategoryDTO
 	 * @return
 	 */

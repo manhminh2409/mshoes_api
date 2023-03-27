@@ -12,7 +12,7 @@ public class Utilities {
 	/**
 	 * Method get current date and format output to String <br>
 	 * <u><i>Update: 26/02/2023</i></u>
-	 * 
+	 *
 	 * @return
 	 * @author manhminh
 	 */
@@ -25,18 +25,18 @@ public class Utilities {
 //	/**
 //	 * Method encode password to hexMD5<br>
 //	 * <u><i>Update: 02/03/2023</i></u>
-//	 * 
+//	 *
 //	 * @param str
 //	 * @return
 //	 */
 //	public String encodeToMD5(String str) {
 //		return DigestUtils.md5Hex(str).toUpperCase();
 //	}
-	
+
 //	/**
 //	 * Method decode password to hexMD5<br>
 //	 * <u><i>Update: 02/03/2023</i></u>
-//	 * 
+//	 *
 //	 * @param str
 //	 * @return
 //	 */

@@ -24,7 +24,7 @@ public class ProductMapper {
 	/**
 	 * Method convert Product to ProductDTO using ModelMapper <br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param product
 	 * @return
 	 */
@@ -35,11 +35,12 @@ public class ProductMapper {
 	/**
 	 * Method convert ProductDTO to Product using ModelMapper <br>
 	 * <u><i>Update: 02/03/2023</i></u>
-	 * 
+	 *
 	 * @param userDTO
 	 * @return
 	 */
 	public Product toEntity(ProductDTO productDTO) {
-		return modelMapper.map(productDTO, Product.class);
+		Product product = modelMapper.map(productDTO, Product.class);
+		return product;
 	}
 }
