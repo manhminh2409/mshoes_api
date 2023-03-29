@@ -1,7 +1,6 @@
 package com.mshoes.mshoesApi.services.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	public List<UserDTO> getAllUsers() {
 		// TODO Auto-generated method stub
 		List<User> users = userRepository.findAll();
-		return users.stream().map(user -> userMapper.toDTO(user)).collect(Collectors.toList());
+		return userMapper.mapModelToDTOs(users);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
-		return userMapper.toDTO(user);
+		return userMapper.mapModelToDTO(user);
 	}
 
 	BCryptPasswordEncoder passwordEncoder() {
@@ -69,12 +68,12 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUserStatus(1);
 
 		// Convert userDTO to User
-		User user = userMapper.toEntity(userDTO);
+		User user = userMapper.mapDTOToModel(userDTO);
 
 		// Save user into database
 		User responseUser = userRepository.save(user);
 
-		return userMapper.toDTO(responseUser);
+		return userMapper.mapModelToDTO(responseUser);
 	}
 
 	@Override
@@ -89,12 +88,12 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUserLastModified(utilities.getCurrentDate());
 
 		// Set old User with new information from input userDTO
-		user = userMapper.toEntity(userDTO);
+		user = userMapper.mapDTOToModel(userDTO);
 
 		// Save data
 		User responseUser = userRepository.save(user);
 
-		return userMapper.toDTO(responseUser);
+		return userMapper.mapModelToDTO(responseUser);
 
 	}
 

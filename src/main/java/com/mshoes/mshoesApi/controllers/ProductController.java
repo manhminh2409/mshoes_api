@@ -2,6 +2,7 @@ package com.mshoes.mshoesApi.controllers;
 
 import java.util.List;
 
+import com.mshoes.mshoesApi.models.DTO.RequestedProduct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,9 +31,9 @@ public class ProductController {
 	// Create product POST
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/create")
-	public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+	public ResponseEntity<ProductDTO> createProduct(@RequestBody RequestedProduct requestedProduct) {
 
-		return new ResponseEntity<>(productService.createProduct(productDTO), HttpStatus.CREATED);
+		return new ResponseEntity<>(productService.createProduct(requestedProduct), HttpStatus.CREATED);
 	}
 
 	// get All products
@@ -57,9 +58,9 @@ public class ProductController {
 	// Update Product by ID
 	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ProductDTO> updateProduct(@RequestBody ProductDTO productDTO,
+	public ResponseEntity<ProductDTO> updateProduct(@RequestBody RequestedProduct requestedProduct,
 			@PathVariable(name = "id") long productId) {
-		ProductDTO productResponse = productService.updateProduct(productDTO, productId);
+		ProductDTO productResponse = productService.updateProduct(requestedProduct, productId);
 
 		return new ResponseEntity<>(productResponse, HttpStatus.OK);
 	}

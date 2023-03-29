@@ -1,46 +1,30 @@
 package com.mshoes.mshoesApi.mapper;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.mshoes.mshoesApi.models.User;
+import com.mshoes.mshoesApi.models.DTO.RequestedUser;
 import com.mshoes.mshoesApi.models.DTO.UserDTO;
+import com.mshoes.mshoesApi.models.User;
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Service
-public class UserMapper {
+import java.util.List;
 
-	@Autowired
-	private ModelMapper modelMapper;
+@Mapper(uses = ProductMapper.class)
+public interface UserMapper {
+	// mapper one model to dto
+	UserDTO mapModelToDTO(User user);
 
-	public ModelMapper getModelMapper() {
-		return modelMapper;
-	}
+	// mapper list model to dto
+	List<UserDTO> mapModelToDTOs(List<User> users);
 
-	public void setModelMapper(ModelMapper modelMapper) {
-		this.modelMapper = modelMapper;
-	}
+	// mapper one dto to model
+	User mapDTOToModel(UserDTO userDTO);
 
-	/**
-	 * Method convert User to UserDTO using ModelMapper <br>
-	 * <u><i>Update: 26/02/2023</i></u>
-	 *
-	 * @param user
-	 * @return
-	 */
-	public UserDTO toDTO(User user) {
-		return modelMapper.map(user, UserDTO.class);
-	}
+	// mapper list dto to model
+	List<User> mapDTOToModels(List<UserDTO> userDTOS);
 
-	/**
-	 * Method convert UserDTO to User using ModelMapper <br>
-	 * <u><i>Update: 26/02/2023</i></u>
-	 *
-	 * @param userDTO
-	 * @return
-	 */
-	public User toEntity(UserDTO userDTO) {
-		return modelMapper.map(userDTO, User.class);
-	}
+	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+	void updateModel(@MappingTarget User user, RequestedUser requestedUser);
 
 }

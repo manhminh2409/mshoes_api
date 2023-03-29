@@ -3,6 +3,7 @@ package com.mshoes.mshoesApi.services;
 import java.util.List;
 
 import com.mshoes.mshoesApi.models.DTO.ProductDTO;
+import com.mshoes.mshoesApi.models.DTO.RequestedProduct;
 
 public interface ProductService {
 
@@ -36,20 +37,20 @@ public interface ProductService {
 	 * Method create new product<br>
 	 * <u><i>Update: 02/03/2023</i></u>
 	 *
-	 * @param productDTO
+	 * @param requestedProduct
 	 * @return
 	 */
-	ProductDTO createProduct(ProductDTO productDTO);
+	ProductDTO createProduct(RequestedProduct requestedProduct);
 
 	/**
 	 * Method update detail a product with new infomation and product_id<br>
 	 * <u><i>Update: 02/03/2023</i></u>
 	 *
-	 * @param productDTO
+	 * @param requestedProduct
 	 * @param productId
 	 * @return
 	 */
-	ProductDTO updateProduct(ProductDTO productDTO, long productId);
+	ProductDTO updateProduct(RequestedProduct requestedProduct, long productId);
 
 	/**
 	 * Method delete (change product_status to value 0) change enable product to

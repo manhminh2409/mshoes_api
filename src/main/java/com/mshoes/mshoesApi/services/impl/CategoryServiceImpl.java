@@ -1,7 +1,6 @@
 package com.mshoes.mshoesApi.services.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<CategoryDTO> getAllcategorys() {
 		// TODO Auto-generated method stub
 		List<Category> categories = categoryRepository.findAll();
-
-		return categories.stream().map(category -> categoryMapper.toDTO(category)).collect(Collectors.toList());
+		return categoryMapper.mapModelToDTOs(categories);
 	}
 
 	@Override
@@ -48,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "Id", categoryId));
 
-		return categoryMapper.toDTO(category);
+		return categoryMapper.mapModelToDTO(category);
 	}
 
 	@Override
@@ -63,9 +61,9 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryDTO.setCategoryStatus(1);
 
 		// Convert and save
-		Category category = categoryRepository.save(categoryMapper.toEntity(categoryDTO));
+		Category category = categoryRepository.save(categoryMapper.mapDTOToModel(categoryDTO));
 
-		return categoryMapper.toDTO(category);
+		return categoryMapper.mapModelToDTO(category);
 	}
 
 	@Override
@@ -77,12 +75,12 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryDTO.setId(categoryId);
 		categoryDTO.setCategoryLastModified(utilities.getCurrentDate());
 
-		category = categoryMapper.toEntity(categoryDTO);
+		category = categoryMapper.mapDTOToModel(categoryDTO);
 
 		// Save
 		Category responseCategory = categoryRepository.save(category);
 
-		return categoryMapper.toDTO(responseCategory);
+		return categoryMapper.mapModelToDTO(responseCategory);
 	}
 
 	@Override

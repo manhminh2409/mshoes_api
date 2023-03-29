@@ -1,45 +1,21 @@
 package com.mshoes.mshoesApi.mapper;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.mshoes.mshoesApi.models.Role;
 import com.mshoes.mshoesApi.models.DTO.RoleDTO;
+import com.mshoes.mshoesApi.models.Role;
+import org.mapstruct.Mapper;
 
-@Service
-public class RoleMapper {
-	@Autowired
-	private ModelMapper modelMapper;
+import java.util.List;
 
-	public ModelMapper getModelMapper() {
-		return modelMapper;
-	}
+@Mapper
+public interface RoleMapper {
+	RoleDTO mapModelToDTO(Role role);
 
-	public void setModelMapper(ModelMapper modelMapper) {
-		this.modelMapper = modelMapper;
-	}
+	// mapper list model to dto
+	List<RoleDTO> mapModelToDTOs(List<Role> roles);
 
-	/**
-	 * Method convert Role to RoleDTO using ModelMapper <br>
-	 * <u><i>Update: 09/03/2023</i></u>
-	 *
-	 * @param role
-	 * @return
-	 */
-	public RoleDTO toDTO(Role role) {
-		return modelMapper.map(role, RoleDTO.class);
-	}
+	// mapper one dto to model
+	Role mapDTOToModel(RoleDTO roleDTO);
 
-	/**
-	 * Method convert roleDTO to role using ModelMapper <br>
-	 * <u><i>Update: 09/03/2023</i></u>
-	 *
-	 * @param roleDTO
-	 * @return
-	 */
-	public Role toEntity(RoleDTO roleDTO) {
-		return modelMapper.map(roleDTO, Role.class);
-	}
-
+	// mapper list dto to model
+	List<Role> mapDTOToModels(List<RoleDTO> roleDTOS);
 }

@@ -1,9 +1,10 @@
 package com.mshoes.mshoesApi.models.DTO;
 
-import com.mshoes.mshoesApi.models.Category;
-import com.mshoes.mshoesApi.models.User;
+import com.mshoes.mshoesApi.models.*;
 
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ProductDTO {
@@ -16,22 +17,21 @@ public class ProductDTO {
 
 	private int productVisited;
 
-	private int productTotal;
-
-	private int productSold;
-
-	private int productPrice;
-
-	private int productDiscountPrice;
-
 	private String productCreatedDate;
 
 	private String productLastModified;
 
 	private int productStatus;
 
-	private Category productCategory;
+	private String categoryTitle;
 
-	private User productUser;
+	private String authorFullname;
+
+	private List<ImageDTO> images;
+
+	private List<ProductOption> productOptions;
+
+	private List<ProductVariant> productVariants;
+
 
 }

@@ -1,46 +1,31 @@
 package com.mshoes.mshoesApi.mapper;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+
+import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import com.mshoes.mshoesApi.models.Category;
 import com.mshoes.mshoesApi.models.DTO.CategoryDTO;
+import com.mshoes.mshoesApi.models.DTO.RequestedCategory;
 
-@Service
-public class CategoryMapper {
+@Mapper(uses = ProductMapper.class)
+public interface CategoryMapper {
 
-	@Autowired
-	private ModelMapper modelMapper;
+	// mapper one model to dto
+	CategoryDTO mapModelToDTO(Category category);
 
-	public ModelMapper getModelMapper() {
-		return modelMapper;
-	}
+	// mapper list model to dto
+	List<CategoryDTO> mapModelToDTOs(List<Category> categories);
 
-	public void setModelMapper(ModelMapper modelMapper) {
-		this.modelMapper = modelMapper;
-	}
+	// mapper one dto to model
+	Category mapDTOToModel(CategoryDTO categoryDTO);
 
-	/**
-	 * Method convert Category to CategoryDTO using ModelMapper <br>
-	 * <u><i>Update: 06/03/2023</i></u>
-	 *
-	 * @param Category
-	 * @return
-	 */
-	public CategoryDTO toDTO(Category category) {
-		return modelMapper.map(category, CategoryDTO.class);
-	}
+	// mapper list dto to model
+	List<Category> mapDTOToModels(List<CategoryDTO> categoryDTOS);
 
-	/**
-	 * Method convert CategoryDTO to Category using ModelMapper <br>
-	 * <u><i>Update: 06/03/2023</i></u>
-	 *
-	 * @param CategoryDTO
-	 * @return
-	 */
-	public Category toEntity(CategoryDTO categoryDTO) {
-		return modelMapper.map(categoryDTO, Category.class);
-	}
-
+	@BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+	void updateModel(@MappingTarget Category category, RequestedCategory requestedCategory);
 }
